@@ -25,6 +25,8 @@ public class BookListsFragment extends Fragment {
 
     private String[] categories;
 
+    private ExpandableListView bookListsExp;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
@@ -32,7 +34,7 @@ public class BookListsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.book_lists_fragment, container, false);
 
-        ExpandableListView bookListsExp = (ExpandableListView) rootView.findViewById(R.id
+        bookListsExp = (ExpandableListView) rootView.findViewById(R.id
                 .bookListsExp);
         bookListsExp.setAdapter(new CategoriesExpandableAdapter(getActivity(), categories,
                 getBookLists()));
@@ -42,13 +44,15 @@ public class BookListsFragment extends Fragment {
 
     private HashMap<String, List<Book>> getBookLists() {
         HashMap<String, List<Book>> lists = new HashMap<>();
-        //lists.put(categories[0], Book.find(Book.class, "status = ?", "IN_PROGRESS"));
-        List<Book> test = new ArrayList<>();
-        test.add(new Book("Jane Eyre", "Charlotte Bronte", null));
-        test.add(new Book("The Count of Monte Cristo", "Alexander Dumas", null));
-        lists.put(categories[0], test);
+        lists.put(categories[0], Book.find(Book.class, "status = ?", "IN_PROGRESS"));
         lists.put(categories[1], Book.find(Book.class, "status = ?", "TO_READ"));
         lists.put(categories[2], Book.find(Book.class, "status = ?", "FINISHED"));
         return lists;
+    }
+
+    public void addBook(Book book){
+        CategoriesExpandableAdapter adapter = ((CategoriesExpandableAdapter) bookListsExp.getExpandableListAdapter());
+        adapter.addBook(book);
+        adapter.notifyDataSetChanged();
     }
 }

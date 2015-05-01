@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/createScreenLabel"
+            android:text="@string/title_label"/>
+
+        <EditText
+            android:id="@+id/titleEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_edit_hint"
+            android:inputType="textCapWords"/>
+
+        <TextView
+            style="@style/createScreenLabel"
+            android:text="@string/author_label"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/authorEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/author_edit_hint"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            style="@style/createScreenLabel"
+            android:text="@string/add_to_list_label"
+            android:layout_marginTop="15dp"/>
+
+        <Spinner
+            android:id="@+id/statusSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:text="@string/cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:text="@string/save_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</RelativeLayout>

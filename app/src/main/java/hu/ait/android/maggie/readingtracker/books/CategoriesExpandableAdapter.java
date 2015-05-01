@@ -83,6 +83,10 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    public void addBook(Book book) {
+        getGroup(book.getStatus().getIndex()).add(book);
+    }
+
     private class ViewHolder {
         TextView titleText;
         TextView authorText;

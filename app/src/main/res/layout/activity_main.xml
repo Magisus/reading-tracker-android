@@ -16,11 +16,10 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/searchContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </FrameLayout>
+    <Button
+        android:id="@+id/addBookBtn"
+        android:text="@string/add_book_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
