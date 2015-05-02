@@ -12,4 +12,7 @@
     <string name="add_book_btn">Add book</string>
     <string name="save_btn">Save</string>
     <string name="cancel_btn">Cancel</string>
+    <string name="no_search_results">No results match your search.</string>
+    <string name="search_btn">Go</string>
+    <string name="search_edit">Search books</string>
 </resources>

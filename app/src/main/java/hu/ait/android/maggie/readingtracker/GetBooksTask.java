@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import de.greenrobot.event.EventBus;
+import hu.ait.android.maggie.readingtracker.books_json.BookSearchResult;
 
 /**
  * Created by Magisus on 5/2/2015.
@@ -77,10 +78,9 @@ public class GetBooksTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG);
-//        Gson gson = new Gson();
-//        BookSearchResult books = gson.fromJson(result, BookSearchResult.class);
-//
-//        EventBus.getDefault().post(books);
+        Gson gson = new Gson();
+        BookSearchResult books = gson.fromJson(result, BookSearchResult.class);
+
+        EventBus.getDefault().post(books);
     }
 }

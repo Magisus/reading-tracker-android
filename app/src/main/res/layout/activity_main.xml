@@ -7,19 +7,23 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
+              android:weightSum="10"
               tools:context=".MainMenu">
 
     <FrameLayout
         android:id="@+id/listsContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="9">
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/addBookBtn"
-        android:text="@string/add_book_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+
 
 </LinearLayout>

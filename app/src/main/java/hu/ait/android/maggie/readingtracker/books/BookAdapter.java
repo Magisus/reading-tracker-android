@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import hu.ait.android.maggie.readingtracker.R;
@@ -43,6 +45,7 @@ public class BookAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView titleText;
         TextView authorText;
+        ImageView coverImage;
     }
 
     @Override
@@ -50,10 +53,11 @@ public class BookAdapter extends BaseAdapter {
         View v = convertView;
 
         if(v == null){
-            v = LayoutInflater.from(context).inflate(R.layout.book_row, parent, false);
+            v = LayoutInflater.from(context).inflate(R.layout.book_row_child, parent, false);
             ViewHolder holder = new ViewHolder();
             holder.titleText = (TextView) v.findViewById(R.id.titleText);
             holder.authorText = (TextView) v.findViewById(R.id.authorText);
+            holder.coverImage = (ImageView) v.findViewById(R.id.coverImage);
             v.setTag(holder);
         }
 
@@ -61,7 +65,10 @@ public class BookAdapter extends BaseAdapter {
         if(v != null){
             ViewHolder holder = (ViewHolder) v.getTag();
             holder.titleText.setText(book.getTitle());
-            holder.authorText.setTag(book.getAuthor());
+            holder.authorText.setText(book.getAuthor());
+            if(book.getCoverUrl() != null) {
+                Glide.with(context).load(book.getCoverUrl()).into(holder.coverImage);
+            }
         }
 
         return v;

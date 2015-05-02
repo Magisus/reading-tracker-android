@@ -4,17 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import hu.ait.android.maggie.readingtracker.GetBooksTask;
+import de.greenrobot.event.EventBus;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
+import hu.ait.android.maggie.readingtracker.books_json.BookSearchResult;
+import hu.ait.android.maggie.readingtracker.books_json.Item;
 import hu.ait.android.maggie.readingtracker.create.CreateBookActivity;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements SearchBarFragment.BookResultsDisplay {
 
     public static final int CREATE_BOOK = 101;
 
@@ -24,21 +27,45 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        showFragment(BookListsFragment.TAG);
+        showListsFragment();
+        showSearchFragment();
     }
 
-    private void showFragment(String fragmentTag) {
+    private void showListsFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
 
-        if (BookListsFragment.TAG.equals(fragmentTag)) {
-            BookListsFragment mainMenuFragment = new BookListsFragment();
-            fragmentTransaction.replace(R.id.listsContainer, mainMenuFragment,
-                    BookListsFragment.TAG);
+        BookListsFragment mainMenuFragment = new BookListsFragment();
+        fragmentTransaction.replace(R.id.listsContainer, mainMenuFragment,
+                BookListsFragment.TAG);
 
-            fragmentTransaction.commit();
-        }
+        fragmentTransaction.commit();
+    }
+
+    private void showSearchFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+
+        SearchBarFragment mainMenuFragment = new SearchBarFragment();
+        fragmentTransaction.replace(R.id.searchContainer, mainMenuFragment,
+                SearchBarFragment.TAG);
+
+        fragmentTransaction.commit();
+    }
+
+    public void showSearchResults(ArrayList<Book> results) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+
+        SearchResultsFragment fragment = new SearchResultsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(SearchResultsFragment.SEARCH_RESULTS, results);
+        fragment.setArguments(args);
+        fragmentTransaction.replace(R.id.listsContainer, fragment, SearchResultsFragment.TAG);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -49,18 +76,20 @@ public class MainActivity extends ActionBarActivity {
 
             BookListsFragment fragment = (BookListsFragment) getSupportFragmentManager()
                     .findFragmentByTag(BookListsFragment.TAG);
-            if(fragment != null){
+            if (fragment != null) {
                 fragment.addBook(book);
             }
         }
     }
 
-    @OnClick(R.id.addBookBtn)
-    public void goToAddBookScreen(View view) {
-        String query = "https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes";
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-        new GetBooksTask(getApplicationContext()).execute(query);
-        //startActivityForResult(new Intent(this, CreateBookActivity.class), CREATE_BOOK);
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
 }
