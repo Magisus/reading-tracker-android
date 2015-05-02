@@ -8,6 +8,7 @@ import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import hu.ait.android.maggie.readingtracker.GetBooksTask;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.create.CreateBookActivity;
@@ -56,7 +57,10 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.addBookBtn)
     public void goToAddBookScreen(View view) {
-        startActivityForResult(new Intent(this, CreateBookActivity.class), CREATE_BOOK);
+        String query = "https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes";
+
+        new GetBooksTask(getApplicationContext()).execute(query);
+        //startActivityForResult(new Intent(this, CreateBookActivity.class), CREATE_BOOK);
     }
 
 }
