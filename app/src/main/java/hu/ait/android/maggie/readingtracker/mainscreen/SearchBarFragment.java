@@ -1,10 +1,12 @@
 package hu.ait.android.maggie.readingtracker.mainscreen;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -62,6 +64,10 @@ public class SearchBarFragment extends Fragment {
         String query = "https://www.googleapis.com/books/v1/volumes?q=" + searchTerm;
 
         new GetBooksTask(getActivity().getApplicationContext()).execute(query);
+
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(searchEdit.getWindowToken(), 0);
     }
 
 

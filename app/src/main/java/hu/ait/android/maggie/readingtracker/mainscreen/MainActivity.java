@@ -65,6 +65,7 @@ public class MainActivity extends ActionBarActivity implements SearchBarFragment
         args.putSerializable(SearchResultsFragment.SEARCH_RESULTS, results);
         fragment.setArguments(args);
         fragmentTransaction.replace(R.id.listsContainer, fragment, SearchResultsFragment.TAG);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

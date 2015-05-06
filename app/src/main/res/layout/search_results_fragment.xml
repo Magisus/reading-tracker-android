@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <ListView
         android:id="@+id/searchResultsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView android:id="@android:id/empty"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:text="@string/no_search_results" />
+    <LinearLayout
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_search_results"/>
+
+        <Button
+            android:id="@+id/addManuallyBtn"
+            android:textColor="#1F53FF"
+            android:text="@string/add_manually_link"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -53,7 +53,7 @@ public class BookAdapter extends BaseAdapter {
         View v = convertView;
 
         if(v == null){
-            v = LayoutInflater.from(context).inflate(R.layout.book_row_child, parent, false);
+            v = LayoutInflater.from(context).inflate(R.layout.book_row, parent, false);
             ViewHolder holder = new ViewHolder();
             holder.titleText = (TextView) v.findViewById(R.id.titleText);
             holder.authorText = (TextView) v.findViewById(R.id.authorText);
