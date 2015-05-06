@@ -1,11 +1,11 @@
-package hu.ait.android.maggie.readingtracker.books_json;
+package hu.ait.android.maggie.readingtracker.book_search_json;
 
 import com.google.gson.annotations.Expose;
 
 /**
  * Created by Magisus on 5/2/2015.
  */
-public class Epub {
+public class Pdf {
 
     @Expose
     private Boolean isAvailable;

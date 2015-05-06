@@ -1,12 +1,13 @@
-package hu.ait.android.maggie.readingtracker.books_json;
+package hu.ait.android.maggie.readingtracker.book_json;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * Created by Magisus on 5/2/2015.
- */
-public class Item {
+import hu.ait.android.maggie.readingtracker.book_search_json.AccessInfo;
 
+/**
+ * Created by Magisus on 5/6/2015.
+ */
+public class VolumeResource {
     @Expose
     private String kind;
     @Expose
@@ -18,11 +19,11 @@ public class Item {
     @Expose
     private VolumeInfo volumeInfo;
     @Expose
+    private LayerInfo layerInfo;
+    @Expose
     private SaleInfo saleInfo;
     @Expose
     private AccessInfo accessInfo;
-    @Expose
-    private SearchInfo searchInfo;
 
     public String getKind() {
         return kind;
@@ -64,6 +65,14 @@ public class Item {
         this.volumeInfo = volumeInfo;
     }
 
+    public LayerInfo getLayerInfo() {
+        return layerInfo;
+    }
+
+    public void setLayerInfo(LayerInfo layerInfo) {
+        this.layerInfo = layerInfo;
+    }
+
     public SaleInfo getSaleInfo() {
         return saleInfo;
     }
@@ -78,13 +87,5 @@ public class Item {
 
     public void setAccessInfo(AccessInfo accessInfo) {
         this.accessInfo = accessInfo;
-    }
-
-    public SearchInfo getSearchInfo() {
-        return searchInfo;
-    }
-
-    public void setSearchInfo(SearchInfo searchInfo) {
-        this.searchInfo = searchInfo;
     }
 }

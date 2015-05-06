@@ -1,9 +1,9 @@
-package hu.ait.android.maggie.readingtracker.books_json;
+package hu.ait.android.maggie.readingtracker.book_json;
 
 import com.google.gson.annotations.Expose;
 
 /**
- * Created by Magisus on 5/2/2015.
+ * Created by Magisus on 5/6/2015.
  */
 public class SaleInfo {
 
@@ -13,6 +13,8 @@ public class SaleInfo {
     private String saleability;
     @Expose
     private Boolean isEbook;
+    @Expose
+    private String buyLink;
 
     public String getCountry() {
         return country;
@@ -38,4 +40,11 @@ public class SaleInfo {
         this.isEbook = isEbook;
     }
 
+    public String getBuyLink() {
+        return buyLink;
+    }
+
+    public void setBuyLink(String buyLink) {
+        this.buyLink = buyLink;
+    }
 }

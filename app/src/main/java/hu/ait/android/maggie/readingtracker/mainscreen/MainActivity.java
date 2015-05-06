@@ -6,14 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
-import hu.ait.android.maggie.readingtracker.books_json.BookSearchResult;
-import hu.ait.android.maggie.readingtracker.books_json.Item;
 import hu.ait.android.maggie.readingtracker.create.CreateBookActivity;
 
 

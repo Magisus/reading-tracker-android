@@ -1,4 +1,4 @@
-package hu.ait.android.maggie.readingtracker.books_json;
+package hu.ait.android.maggie.readingtracker.book_search_json;
 
 import com.google.gson.annotations.Expose;
 

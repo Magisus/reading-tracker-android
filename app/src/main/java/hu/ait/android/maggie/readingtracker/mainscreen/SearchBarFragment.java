@@ -19,8 +19,8 @@ import de.greenrobot.event.EventBus;
 import hu.ait.android.maggie.readingtracker.GetBooksTask;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
-import hu.ait.android.maggie.readingtracker.books_json.BookSearchResult;
-import hu.ait.android.maggie.readingtracker.books_json.Item;
+import hu.ait.android.maggie.readingtracker.book_search_json.BookSearchResult;
+import hu.ait.android.maggie.readingtracker.book_search_json.Item;
 
 /**
  * Created by Magisus on 5/2/2015.

@@ -33,7 +33,7 @@ public class BookAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Book getItem(int position) {
         return books.get(position);
     }
 

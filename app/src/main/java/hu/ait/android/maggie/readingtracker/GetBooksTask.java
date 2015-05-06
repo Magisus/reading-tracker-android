@@ -2,11 +2,9 @@ package hu.ait.android.maggie.readingtracker;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import de.greenrobot.event.EventBus;
-import hu.ait.android.maggie.readingtracker.books_json.BookSearchResult;
+import hu.ait.android.maggie.readingtracker.book_search_json.BookSearchResult;
 
 /**
  * Created by Magisus on 5/2/2015.

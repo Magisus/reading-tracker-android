@@ -14,11 +14,11 @@ public class Book extends SugarRecord<Book> implements Serializable {
 
         private int index;
 
-        private Status(int index){
+        private Status(int index) {
             this.index = index;
         }
 
-        public int getIndex(){
+        public int getIndex() {
             return index;
         }
 
@@ -36,12 +36,13 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private String author;
     private String coverUrl;
     private Status status;
+    private int pageCount;
 
-    public Book(){
+    public Book() {
         //default constructor for SugarORM
     }
 
-    public Book(String title, String author, String coverUrl){
+    public Book(String title, String author, String coverUrl) {
         this.title = title;
         this.author = author;
         this.coverUrl = coverUrl;
@@ -77,5 +78,13 @@ public class Book extends SugarRecord<Book> implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public int getPageCount() {
+        return pageCount;
     }
 }
