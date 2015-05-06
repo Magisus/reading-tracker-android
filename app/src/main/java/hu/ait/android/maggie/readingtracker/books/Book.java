@@ -37,6 +37,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private String coverUrl;
     private Status status;
     private int pageCount;
+    private String apiId;
 
     public Book() {
         //default constructor for SugarORM
@@ -86,5 +87,13 @@ public class Book extends SugarRecord<Book> implements Serializable {
 
     public int getPageCount() {
         return pageCount;
+    }
+
+    public String getApiId() {
+        return apiId;
+    }
+
+    public void setApiId(String id) {
+        this.apiId = id;
     }
 }

@@ -1,18 +1,40 @@
 package hu.ait.android.maggie.readingtracker.details;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import hu.ait.android.maggie.readingtracker.R;
+import hu.ait.android.maggie.readingtracker.books.Book;
 
 public class BookDetailsActivity extends ActionBarActivity {
+
+    private Book bookToDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
+
+        bookToDisplay = (Book) getIntent().getSerializableExtra(BookDetailsFragment.BOOK_TO_DISPLAY);
+
+        showBookDetails();
+    }
+
+    private void showBookDetails(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+
+        BookDetailsFragment fragment = new BookDetailsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(BookDetailsFragment.BOOK_TO_DISPLAY, bookToDisplay);
+        fragment.setArguments(args);
+        fragmentTransaction.replace(R.id.bookInfoContainer, fragment, BookDetailsFragment.TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override

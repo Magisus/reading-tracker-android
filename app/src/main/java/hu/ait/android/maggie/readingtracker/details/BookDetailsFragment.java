@@ -21,6 +21,7 @@ import hu.ait.android.maggie.readingtracker.books.Book;
 public class BookDetailsFragment extends Fragment {
 
     public static final String BOOK_TO_DISPLAY = "BOOK_TO_DISPLAY";
+    public static final String TAG = "BookDetailsFragment";
 
     @InjectView(R.id.titleText)
     TextView titleText;
@@ -53,6 +54,6 @@ public class BookDetailsFragment extends Fragment {
             Glide.with(getActivity().getApplicationContext()).load(book.getCoverUrl()).into(coverImage);
         }
 
-        pagesText.setText(book.getPageCount());
+        pagesText.setText("Pages: " + book.getPageCount());
     }
 }

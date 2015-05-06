@@ -89,7 +89,10 @@ public class SearchBarFragment extends Fragment {
                 coverUrl = item.getVolumeInfo().getImageLinks().getSmallThumbnail();
             }
 
-            booksSearched.add(new Book(title, authorList, coverUrl));
+            Book book = new Book(title, authorList, coverUrl);
+            book.setApiId(item.getId());
+
+            booksSearched.add(book);
         }
         ((BookResultsDisplay) getActivity()).showSearchResults(booksSearched);
     }
