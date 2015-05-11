@@ -18,4 +18,5 @@
     <string name="add_manually_link"><![CDATA[<u>Add book manually...</u>]]></string>
     <string name="title_activity_book_details">Book Details</string>
     <string name="pages_default">Pages: N/A</string>
+    <string name="add_to_list_btn">Add to list...</string>
 </resources>
