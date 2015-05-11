@@ -81,11 +81,12 @@ public class SearchResultsFragment extends Fragment {
 
         String coverUrl = null;
         if (volume.getVolumeInfo().getImageLinks() != null) {
-            coverUrl = volume.getVolumeInfo().getImageLinks().getMedium();
+            coverUrl = volume.getVolumeInfo().getImageLinks().getThumbnail();
         }
 
         Book book = new Book(title, authorList, coverUrl);
         book.setPageCount(volume.getVolumeInfo().getPrintedPageCount());
+        book.setPublicationYear(volume.getVolumeInfo().getPublishedDate());
 
         Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
         intent.putExtra(BookDetailsFragment.BOOK_TO_DISPLAY, book);

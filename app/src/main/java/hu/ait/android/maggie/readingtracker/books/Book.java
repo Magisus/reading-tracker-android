@@ -38,6 +38,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private Status status;
     private int pageCount;
     private String apiId;
+    private String publicationYear;
 
     public Book() {
         //default constructor for SugarORM
@@ -95,5 +96,13 @@ public class Book extends SugarRecord<Book> implements Serializable {
 
     public void setApiId(String id) {
         this.apiId = id;
+    }
+
+    public String getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(String publicationYear) {
+        this.publicationYear = publicationYear;
     }
 }

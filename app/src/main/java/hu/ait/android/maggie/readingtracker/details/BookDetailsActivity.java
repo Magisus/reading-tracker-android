@@ -33,7 +33,6 @@ public class BookDetailsActivity extends ActionBarActivity {
         args.putSerializable(BookDetailsFragment.BOOK_TO_DISPLAY, bookToDisplay);
         fragment.setArguments(args);
         fragmentTransaction.replace(R.id.bookInfoContainer, fragment, BookDetailsFragment.TAG);
-        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

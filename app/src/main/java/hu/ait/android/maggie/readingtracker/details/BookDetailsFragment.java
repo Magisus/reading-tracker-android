@@ -35,8 +35,12 @@ public class BookDetailsFragment extends Fragment {
     @InjectView(R.id.pagesText)
     TextView pagesText;
 
+    @InjectView(R.id.publicationText)
+    TextView publicationText;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View rootView = inflater.inflate(R.layout.book_details_fragment, container, false);
         ButterKnife.inject(this, rootView);
 
@@ -46,14 +50,16 @@ public class BookDetailsFragment extends Fragment {
         return rootView;
     }
 
-    private void fillDetails(Book book){
+    private void fillDetails(Book book) {
         titleText.setText(book.getTitle());
         authorText.setText(book.getAuthor());
 
-        if(book.getCoverUrl() != null) {
-            Glide.with(getActivity().getApplicationContext()).load(book.getCoverUrl()).into(coverImage);
+        if (book.getCoverUrl() != null) {
+            Glide.with(getActivity().getApplicationContext()).load(book.getCoverUrl()).fitCenter
+                    ().into(coverImage);
         }
 
         pagesText.setText("Pages: " + book.getPageCount());
+        publicationText.setText("Published: " + book.getPublicationYear());
     }
 }

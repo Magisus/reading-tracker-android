@@ -12,12 +12,14 @@
             android:id="@+id/coverImage"
             android:src="@drawable/book_default"
             android:layout_width="120dp"
-            android:layout_height="120dp"/>
+            android:layout_height="120dp"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <TextView
             android:id="@+id/titleText"
             android:textColor="#000000"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/coverImage"/>
@@ -34,11 +36,12 @@
 
     <TextView
         android:id="@+id/pagesText"
-        android:textSize="20sp"
-        android:textColor="#000000"
         android:text="@string/pages_default"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        style="@style/BookDetailsText"/>
+
+    <TextView
+        android:id="@+id/publicationText"
+        style="@style/BookDetailsText"/>
 
 </LinearLayout>
