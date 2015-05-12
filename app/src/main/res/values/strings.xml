@@ -19,4 +19,6 @@
     <string name="title_activity_book_details">Book Details</string>
     <string name="pages_default">Pages: N/A</string>
     <string name="add_to_list_btn">Add to list...</string>
+    <string name="action_add_book_title">Add book</string>
+    <string name="change_status_link"><u>Change...</u></string>
 </resources>

@@ -89,7 +89,7 @@ public class SearchResultsFragment extends Fragment {
         book.setPublicationYear(volume.getVolumeInfo().getPublishedDate());
 
         Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
-        intent.putExtra(BookDetailsFragment.BOOK_TO_DISPLAY, book);
+        intent.putExtra(BookDetailsActivity.BOOK_TO_DISPLAY, book);
         startActivity(intent);
     }
 }

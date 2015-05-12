@@ -1,6 +1,7 @@
 package hu.ait.android.maggie.readingtracker.mainscreen;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import java.util.List;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.books.CategoriesExpandableAdapter;
+import hu.ait.android.maggie.readingtracker.details.BookDetailsActivity;
+import hu.ait.android.maggie.readingtracker.details.BookDetailsFragment;
 
 /**
  * Created by Magisus on 5/1/2015.
@@ -25,6 +28,7 @@ public class BookListsFragment extends Fragment {
     private String[] categories;
 
     private ExpandableListView bookListsExp;
+    private CategoriesExpandableAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
@@ -33,12 +37,36 @@ public class BookListsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.book_lists_fragment, container, false);
 
-        bookListsExp = (ExpandableListView) rootView.findViewById(R.id
-                .bookListsExp);
-        bookListsExp.setAdapter(new CategoriesExpandableAdapter(getActivity(), categories,
-                getBookLists()));
+        setUpBookLists(rootView);
 
         return rootView;
+    }
+
+    private void setUpBookLists(View rootView) {
+        bookListsExp = (ExpandableListView) rootView.findViewById(R.id
+                .bookListsExp);
+        adapter = new CategoriesExpandableAdapter(getActivity(), categories,
+                getBookLists());
+        bookListsExp.setAdapter(adapter);
+        bookListsExp.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int
+                    childPosition, long id) {
+                Book book = (Book) bookListsExp.getExpandableListAdapter().getChild
+                        (groupPosition, childPosition);
+                Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
+                intent.putExtra(BookDetailsActivity.BOOK_TO_DISPLAY, book);
+                intent.putExtra(BookDetailsActivity.BOOK_ID, book.getId());
+                startActivity(intent);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.refreshData(getBookLists());
     }
 
     private HashMap<String, List<Book>> getBookLists() {
@@ -49,8 +77,9 @@ public class BookListsFragment extends Fragment {
         return lists;
     }
 
-    public void addBook(Book book){
-        CategoriesExpandableAdapter adapter = ((CategoriesExpandableAdapter) bookListsExp.getExpandableListAdapter());
+    public void addBook(Book book) {
+        CategoriesExpandableAdapter adapter = ((CategoriesExpandableAdapter) bookListsExp
+                .getExpandableListAdapter());
         adapter.addBook(book);
         adapter.notifyDataSetChanged();
     }

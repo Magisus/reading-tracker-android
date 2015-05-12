@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +28,10 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
             List<Book>> groups) {
         this.context = context;
         this.headers = headers;
+        this.groups = groups;
+    }
+
+    public void refreshData(HashMap<String, List<Book>> groups){
         this.groups = groups;
     }
 
@@ -90,6 +97,7 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
     private class ViewHolder {
         TextView titleText;
         TextView authorText;
+        ImageView coverImage;
     }
 
     @Override
@@ -102,6 +110,7 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
             ViewHolder holder = new ViewHolder();
             holder.titleText = (TextView) v.findViewById(R.id.titleText);
             holder.authorText = (TextView) v.findViewById(R.id.authorText);
+            holder.coverImage = (ImageView) v.findViewById(R.id.coverImage);
             v.setTag(holder);
         }
 
@@ -110,6 +119,12 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
             ViewHolder holder = (ViewHolder) v.getTag();
             holder.titleText.setText(book.getTitle());
             holder.authorText.setText(book.getAuthor());
+
+            if(book.getCoverUrl() != null) {
+                Glide.with(context).load(book.getCoverUrl()).into(holder.coverImage);
+            } else {
+                holder.coverImage.setImageResource(R.drawable.book_default);
+            }
         }
 
         return v;

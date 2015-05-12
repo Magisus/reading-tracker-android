@@ -20,7 +20,7 @@ import hu.ait.android.maggie.readingtracker.books.Book;
  */
 public class BookDetailsFragment extends Fragment {
 
-    public static final String BOOK_TO_DISPLAY = "BOOK_TO_DISPLAY";
+
     public static final String TAG = "BookDetailsFragment";
 
     @InjectView(R.id.titleText)
@@ -44,7 +44,7 @@ public class BookDetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.book_details_fragment, container, false);
         ButterKnife.inject(this, rootView);
 
-        Book book = (Book) getArguments().getSerializable(BOOK_TO_DISPLAY);
+        Book book = (Book) getArguments().getSerializable(BookDetailsActivity.BOOK_TO_DISPLAY);
         fillDetails(book);
 
         return rootView;

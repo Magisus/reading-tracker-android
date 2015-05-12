@@ -1,5 +1,6 @@
 package hu.ait.android.maggie.readingtracker.details;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,9 +14,15 @@ import hu.ait.android.maggie.readingtracker.books.Book;
 /**
  * Created by Magisus on 5/11/2015.
  */
-public class AddToListDialog extends DialogFragment implements DialogInterface.OnClickListener{
+public class SetStatusDialog extends DialogFragment implements DialogInterface.OnClickListener{
 
     public static final String TAG = "AddToListDialog";
+
+    public interface StatusSelectedInterface {
+        public void onStatusSelected(Book.Status status);
+    }
+
+    private StatusSelectedInterface statusSelectedInterface;
 
     @NonNull
     @Override
@@ -27,8 +34,18 @@ public class AddToListDialog extends DialogFragment implements DialogInterface.O
         return builder.create();
     }
 
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            statusSelectedInterface = (StatusSelectedInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OptionsFragmentInterface");
+        }
+    }
+
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        ((BookDetailsActivity) getActivity()).saveBook(Book.Status.fromInt(which));
+        statusSelectedInterface.onStatusSelected(Book.Status.fromInt(which));
     }
 }
