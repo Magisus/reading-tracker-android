@@ -48,6 +48,7 @@ public class CreateFragment extends Fragment {
     public void saveBook(View view) {
         Book book = new Book(titleEdit.getText().toString(), authorEdit.getText().toString(), null);
         book.setStatus(Book.Status.fromInt(statusSpinner.getSelectedItemPosition()));
+        book.setApiId("manual");
 
         getActivity().setResult(CreateBookActivity.RESULT_OK, new Intent().putExtra
                 (CreateBookActivity.KEY_NEW_BOOK, book));

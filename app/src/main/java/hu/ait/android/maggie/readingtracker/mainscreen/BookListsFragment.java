@@ -12,6 +12,8 @@ import android.widget.ExpandableListView;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.books.CategoriesExpandableAdapter;
@@ -27,7 +29,9 @@ public class BookListsFragment extends Fragment {
 
     private String[] categories;
 
-    private ExpandableListView bookListsExp;
+    @InjectView(R.id.bookListsExp)
+    ExpandableListView bookListsExp;
+
     private CategoriesExpandableAdapter adapter;
 
     @Override
@@ -36,15 +40,14 @@ public class BookListsFragment extends Fragment {
         categories = getResources().getStringArray(R.array.reading_status_array);
 
         View rootView = inflater.inflate(R.layout.book_lists_fragment, container, false);
+        ButterKnife.inject(this, rootView);
 
-        setUpBookLists(rootView);
+        setUpBookLists();
 
         return rootView;
     }
 
-    private void setUpBookLists(View rootView) {
-        bookListsExp = (ExpandableListView) rootView.findViewById(R.id
-                .bookListsExp);
+    private void setUpBookLists() {
         adapter = new CategoriesExpandableAdapter(getActivity(), categories,
                 getBookLists());
         bookListsExp.setAdapter(adapter);
@@ -66,7 +69,8 @@ public class BookListsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.refreshData(getBookLists());
+        //Need to prompt a poll to the database
+        setUpBookLists();
     }
 
     private HashMap<String, List<Book>> getBookLists() {
@@ -78,8 +82,6 @@ public class BookListsFragment extends Fragment {
     }
 
     public void addBook(Book book) {
-        CategoriesExpandableAdapter adapter = ((CategoriesExpandableAdapter) bookListsExp
-                .getExpandableListAdapter());
         adapter.addBook(book);
         adapter.notifyDataSetChanged();
     }

@@ -20,7 +20,6 @@ import hu.ait.android.maggie.readingtracker.book_json.VolumeResource;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.books.BookAdapter;
 import hu.ait.android.maggie.readingtracker.details.BookDetailsActivity;
-import hu.ait.android.maggie.readingtracker.details.BookDetailsFragment;
 
 /**
  * Created by Magisus on 5/2/2015.
@@ -69,6 +68,19 @@ public class SearchResultsFragment extends Fragment {
     }
 
     public void onEventMainThread(VolumeResource volume) {
+        Book book = bookAlreadySaved(volume);
+
+        if (book == null) {
+            book = createNewBook(volume);
+        }
+
+        Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
+        intent.putExtra(BookDetailsActivity.BOOK_TO_DISPLAY, book);
+        startActivity(intent);
+    }
+
+    private Book createNewBook(VolumeResource volume) {
+        Book book;
         String title = volume.getVolumeInfo().getTitle();
         String authorList = "";
         List<String> authors = volume.getVolumeInfo().getAuthors();
@@ -84,12 +96,19 @@ public class SearchResultsFragment extends Fragment {
             coverUrl = volume.getVolumeInfo().getImageLinks().getThumbnail();
         }
 
-        Book book = new Book(title, authorList, coverUrl);
+        book = new Book(title, authorList, coverUrl);
         book.setPageCount(volume.getVolumeInfo().getPrintedPageCount());
         book.setPublicationYear(volume.getVolumeInfo().getPublishedDate());
+        book.setApiId(volume.getId());
+        return book;
+    }
 
-        Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
-        intent.putExtra(BookDetailsActivity.BOOK_TO_DISPLAY, book);
-        startActivity(intent);
+    private Book bookAlreadySaved(VolumeResource volume) {
+        String id = volume.getId();
+        List<Book> savedBooks = Book.find(Book.class, "api_id = ?", id);
+        if (savedBooks.size() != 0) {
+            return savedBooks.get(0);
+        }
+        return null;
     }
 }
