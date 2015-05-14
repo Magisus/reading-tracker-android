@@ -32,10 +32,15 @@ public class StatusUpdateFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.status_update_fragment, container, false);
         ButterKnife.inject(this, rootView);
 
-        Book.Status currentStatus = Book.Status.fromInt(getArguments().getInt(STATUS));
-        currentStatusText.setText("Current status: " + currentStatus.toString().toLowerCase());
+        setStatusText();
 
         return rootView;
+    }
+
+    private void setStatusText() {
+        Book.Status currentStatus = Book.Status.fromInt(getArguments().getInt(STATUS));
+        String[] statuses = getResources().getStringArray(R.array.reading_status_array);
+        currentStatusText.setText("Current status: " + statuses[currentStatus.getIndex()]);
     }
 
     @OnClick(R.id.changeStatusBtn)

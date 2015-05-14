@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,38 +10,61 @@
 
         <ImageView
             android:id="@+id/coverImage"
-            android:src="@drawable/book_default"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            android:src="@drawable/book_default"/>
 
         <TextView
             android:id="@+id/titleText"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/coverImage"/>
-
-        <TextView
-            android:id="@+id/authorText"
-            android:textSize="18sp"
-            android:textColor="#777777"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/coverImage"
-            android:layout_below="@id/titleText"/>
+            android:textColor="#000000"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/authorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleText"
+            android:layout_toRightOf="@id/coverImage"
+            android:textColor="#777777"
+            android:textSize="18sp"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/pagesText"
-        android:text="@string/pages_default"
-        android:layout_marginTop="10dp"
-        style="@style/BookDetailsText"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/publicationText"
-        style="@style/BookDetailsText"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pagesText"
+                style="@style/BookDetailsText"
+                android:layout_marginTop="10dp"
+                android:text="@string/pages_default"/>
+
+            <TextView
+                android:id="@+id/publicationText"
+                style="@style/BookDetailsText"/>
+
+            <TextView
+                android:id="@+id/languageText"
+                style="@style/BookDetailsText"/>
+
+            <TextView
+                android:id="@+id/descriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import hu.ait.android.maggie.readingtracker.R;
@@ -38,6 +40,12 @@ public class BookDetailsFragment extends Fragment {
     @InjectView(R.id.publicationText)
     TextView publicationText;
 
+    @InjectView(R.id.languageText)
+    TextView languageText;
+
+    @InjectView(R.id.descriptionText)
+    TextView descriptionText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
@@ -61,5 +69,7 @@ public class BookDetailsFragment extends Fragment {
 
         pagesText.setText("Pages: " + book.getPageCount());
         publicationText.setText("Published: " + book.getPublicationYear());
+        languageText.setText("Language: " + book.getLanguage());
+        descriptionText.setText(book.getDescription());
     }
 }
