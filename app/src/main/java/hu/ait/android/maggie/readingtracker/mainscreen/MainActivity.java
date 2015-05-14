@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 
@@ -104,7 +107,7 @@ public class MainActivity extends ActionBarActivity implements SearchBarFragment
 
         int id = item.getItemId();
 
-        if(id == R.id.action_add_book){
+        if (id == R.id.action_add_book) {
             startActivityForResult(new Intent(this, CreateBookActivity.class), CREATE_BOOK);
             return true;
         }

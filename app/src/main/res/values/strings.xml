@@ -26,4 +26,6 @@
     <string name="language_label">"Language: "</string>
     <string name="page_count_hint">Enter page count</string>
     <string name="published_edit_hint">Enter publishing year</string>
+    <string name="context_menu_title">Book actions</string>
+    <string name="delete_menu_action">Delete</string>
 </resources>

@@ -4,7 +4,9 @@ package hu.ait.android.maggie.readingtracker.mainscreen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
@@ -18,7 +20,6 @@ import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.books.CategoriesExpandableAdapter;
 import hu.ait.android.maggie.readingtracker.details.BookDetailsActivity;
-import hu.ait.android.maggie.readingtracker.details.BookDetailsFragment;
 
 /**
  * Created by Magisus on 5/1/2015.
@@ -26,6 +27,7 @@ import hu.ait.android.maggie.readingtracker.details.BookDetailsFragment;
 public class BookListsFragment extends Fragment {
 
     public static final String TAG = "BookListFragment";
+    public static final int ACTION_DELETE = 1;
 
     private String[] categories;
 
@@ -64,6 +66,7 @@ public class BookListsFragment extends Fragment {
                 return true;
             }
         });
+        registerForContextMenu(bookListsExp);
     }
 
     @Override
@@ -84,5 +87,41 @@ public class BookListsFragment extends Fragment {
     public void addBook(Book book) {
         adapter.addBook(book);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo
+            menuInfo) {
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+        ExpandableListView.ExpandableListContextMenuInfo info =
+                (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+        int type =
+                ExpandableListView.getPackedPositionType(info.packedPosition);
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            menu.setHeaderTitle(getString(R.string.context_menu_title));
+            menu.add(0, ACTION_DELETE, 0, getString(R.string.delete_menu_action));
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem menuItem) {
+        ExpandableListView.ExpandableListContextMenuInfo info =
+                (ExpandableListView.ExpandableListContextMenuInfo) menuItem.getMenuInfo();
+        int groupPos = 0, childPos = 0;
+        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            if (menuItem.getItemId() == ACTION_DELETE) {
+                groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+                childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
+
+                Book book = adapter.getChild(groupPos, childPos);
+                adapter.removeChild(groupPos, childPos);
+                book.delete();
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        return super.onContextItemSelected(menuItem);
     }
 }

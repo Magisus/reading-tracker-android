@@ -54,10 +54,6 @@
                 style="@style/BookDetailsText"/>
 
             <TextView
-                android:id="@+id/languageText"
-                style="@style/BookDetailsText"/>
-
-            <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
