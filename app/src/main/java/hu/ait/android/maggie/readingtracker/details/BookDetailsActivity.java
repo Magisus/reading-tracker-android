@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
+import java.util.Date;
+
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 
 public class BookDetailsActivity extends ActionBarActivity implements SetStatusDialog
-        .StatusSelectedInterface {
+        .StatusSelectedInterface, FinishedDateDialog.DateSelectedInterface {
 
     public static final String BOOK_TO_DISPLAY = "BOOK_TO_DISPLAY";
     public static final String BOOK_ID = "BOOK_ID";
@@ -85,6 +87,10 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
     public void onStatusSelected(Book.Status status) {
         saveBook(status);
         updateUI();
+    }
+
+    public void onFinishedDateSelected(Date date){
+        bookToDisplay.setDateFinished(date);
     }
 
     private void updateUI() {

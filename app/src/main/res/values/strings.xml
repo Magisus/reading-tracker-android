@@ -21,4 +21,5 @@
     <string name="add_to_list_btn">Add to list...</string>
     <string name="action_add_book_title">Add book</string>
     <string name="change_status_link"><u>Change...</u></string>
+    <string name="date_finished_diag_title">Set date finished:</string>
 </resources>

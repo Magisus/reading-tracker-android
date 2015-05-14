@@ -3,6 +3,7 @@ package hu.ait.android.maggie.readingtracker.books;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Magisus on 5/1/2015.
@@ -39,6 +40,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private int pageCount;
     private String apiId;
     private String publicationYear;
+    private Date dateFinished;
 
     public Book() {
         //default constructor for SugarORM
@@ -104,5 +106,14 @@ public class Book extends SugarRecord<Book> implements Serializable {
 
     public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
+    }
+
+
+    public Date getDateFinished() {
+        return dateFinished;
+    }
+
+    public void setDateFinished(Date dateFinished) {
+        this.dateFinished = dateFinished;
     }
 }
