@@ -14,7 +14,7 @@
     <string name="cancel_btn">Cancel</string>
     <string name="no_search_results">No results match your search.</string>
     <string name="search_btn">Go</string>
-    <string name="search_edit">Search books</string>
+    <string name="search_edit">Search for books</string>
     <string name="add_manually_link"><![CDATA[<u>Add book manually...</u>]]></string>
     <string name="title_activity_book_details">Book Details</string>
     <string name="pages_default">Pages: N/A</string>
