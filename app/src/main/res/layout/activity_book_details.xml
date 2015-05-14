@@ -23,6 +23,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/background_material_dark"
-        android:paddingLeft="@dimen/activity_horizontal_margin"></FrameLayout>
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"></FrameLayout>
 
 </LinearLayout>

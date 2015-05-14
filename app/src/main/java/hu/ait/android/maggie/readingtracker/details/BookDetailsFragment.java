@@ -40,9 +40,6 @@ public class BookDetailsFragment extends Fragment {
     @InjectView(R.id.publicationText)
     TextView publicationText;
 
-    @InjectView(R.id.languageText)
-    TextView languageText;
-
     @InjectView(R.id.descriptionText)
     TextView descriptionText;
 
@@ -67,9 +64,8 @@ public class BookDetailsFragment extends Fragment {
                     ().into(coverImage);
         }
 
-        pagesText.setText("Pages: " + book.getPageCount());
-        publicationText.setText("Published: " + book.getPublicationYear());
-        languageText.setText("Language: " + book.getLanguage());
+        pagesText.setText(getResources().getString(R.string.pages_label) + book.getPageCount());
+        publicationText.setText(getResources().getString(R.string.published_label) + book.getPublicationYear());
         descriptionText.setText(book.getDescription());
     }
 }
