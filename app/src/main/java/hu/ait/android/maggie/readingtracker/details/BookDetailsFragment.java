@@ -67,6 +67,8 @@ public class BookDetailsFragment extends Fragment {
 
         pagesText.setText(getResources().getString(R.string.pages_label) + book.getPageCount());
         publicationText.setText(getResources().getString(R.string.published_label) + book.getPublicationYear());
-        descriptionText.setText(Html.fromHtml(book.getDescription()));
+        if(book.getDescription() != null) {
+            descriptionText.setText(Html.fromHtml(book.getDescription()));
+        }
     }
 }
