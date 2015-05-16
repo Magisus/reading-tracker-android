@@ -24,8 +24,13 @@ public class StatusUpdateFragment extends Fragment {
 
     public static final String STATUS = "STATUS";
 
+    public static final String DATE_FINISHED = "DATE_FINISHED";
+
     @InjectView(R.id.currentStatusText)
     TextView currentStatusText;
+
+    @InjectView(R.id.dateFinishedText)
+    TextView dateFinishedText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +46,10 @@ public class StatusUpdateFragment extends Fragment {
         Book.Status currentStatus = Book.Status.fromInt(getArguments().getInt(STATUS));
         String[] statuses = getResources().getStringArray(R.array.reading_status_array);
         currentStatusText.setText("Current status: " + statuses[currentStatus.getIndex()]);
+        if(currentStatus.equals(Book.Status.FINISHED)){
+            String dateFinished = getArguments().getString(DATE_FINISHED);
+            dateFinishedText.setText("Finished: " + dateFinished);
+        }
     }
 
     @OnClick(R.id.changeStatusBtn)

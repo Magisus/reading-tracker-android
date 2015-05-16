@@ -100,7 +100,6 @@ public class SearchResultsFragment extends Fragment {
         book.setPageCount(volume.getVolumeInfo().getPrintedPageCount());
         book.setPublicationYear(volume.getVolumeInfo().getPublishedDate());
         book.setApiId(volume.getId());
-        book.setLanguage(volume.getVolumeInfo().getLanguage());
         book.setDescription(volume.getVolumeInfo().getDescription());
         return book;
     }

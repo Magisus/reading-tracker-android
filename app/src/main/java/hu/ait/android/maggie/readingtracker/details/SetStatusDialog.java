@@ -46,11 +46,6 @@ public class SetStatusDialog extends DialogFragment implements DialogInterface.O
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        if (Book.Status.fromInt(which).equals(Book.Status.FINISHED)) {
-            FinishedDateDialog finishedDateDialog = new FinishedDateDialog();
-            finishedDateDialog.show(getActivity().getSupportFragmentManager(), FinishedDateDialog
-                    .TAG);
-        }
         statusSelectedInterface.onStatusSelected(Book.Status.fromInt(which));
     }
 }

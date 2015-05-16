@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import java.util.Date;
 
 import hu.ait.android.maggie.readingtracker.R;
@@ -50,6 +52,7 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
             Bundle args = new Bundle();
             args.putInt(StatusUpdateFragment.STATUS, bookToDisplay.getStatus
                     ().getIndex());
+            args.putString(StatusUpdateFragment.DATE_FINISHED, bookToDisplay.getDateFinished());
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.actionButtonsContainer, fragment,
                     StatusUpdateFragment.TAG);
@@ -75,8 +78,7 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
         addDialog.show(getSupportFragmentManager(), SetStatusDialog.TAG);
     }
 
-    public void saveBook(Book.Status status) {
-        bookToDisplay.setStatus(status);
+    public void saveBook() {
         if(bookId != -1){
             bookToDisplay.setId(bookId);
         }
@@ -85,15 +87,25 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
 
     @Override
     public void onStatusSelected(Book.Status status) {
-        saveBook(status);
-        updateUI();
-    }
-
-    public void onFinishedDateSelected(Date date){
-        bookToDisplay.setDateFinished(date);
+        bookToDisplay.setStatus(status);
+        if (status.equals(Book.Status.FINISHED)) {
+            FinishedDateDialog finishedDateDialog = new FinishedDateDialog();
+            finishedDateDialog.show(getSupportFragmentManager(), FinishedDateDialog
+                    .TAG);
+        } else {
+            saveBook();
+            updateUI();
+        }
     }
 
     private void updateUI() {
         showStatusFragment(StatusUpdateFragment.TAG);
+    }
+
+    @Override
+    public void onDateSelected(int year, int month, int day) {
+        bookToDisplay.setDateFinished(day + " " + new DateFormatSymbols().getMonths()[month - 1] + ", " + year);
+        saveBook();
+        updateUI();
     }
 }

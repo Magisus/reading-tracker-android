@@ -3,6 +3,7 @@ package hu.ait.android.maggie.readingtracker.books;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -40,7 +41,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private int pageCount;
     private String apiId;
     private String publicationYear;
-    private Date dateFinished;
+    private String dateFinished;
     private String description;
 
     public Book() {
@@ -109,11 +110,11 @@ public class Book extends SugarRecord<Book> implements Serializable {
         this.publicationYear = publicationYear;
     }
 
-    public Date getDateFinished() {
+    public String getDateFinished() {
         return dateFinished;
     }
 
-    public void setDateFinished(Date dateFinished) {
+    public void setDateFinished(String dateFinished) {
         this.dateFinished = dateFinished;
     }
 
