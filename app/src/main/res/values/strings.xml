@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_create_book">Add Book</string>
-    <string name="title_label">Title</string>
+    <string name="title_label">Title:</string>
     <string name="title_edit_hint">Enter book title</string>
     <string name="author_label">Author:</string>
     <string name="author_edit_hint">Enter author</string>
@@ -14,12 +14,19 @@
     <string name="cancel_btn">Cancel</string>
     <string name="no_search_results">No results match your search.</string>
     <string name="search_btn">Go</string>
-    <string name="search_edit">Search books</string>
+    <string name="search_edit">Search for books</string>
     <string name="add_manually_link"><![CDATA[<u>Add book manually...</u>]]></string>
     <string name="title_activity_book_details">Book Details</string>
     <string name="pages_default">Pages: N/A</string>
-    <string name="add_to_list_btn">Add to list...</string>
+    <string name="add_to_list_btn"><u>Add to list...</u></string>
     <string name="action_add_book_title">Add book</string>
     <string name="change_status_link"><u>Change...</u></string>
     <string name="date_finished_diag_title">Set date finished:</string>
+    <string name="pages_label">"Pages: "</string>
+    <string name="published_label">"Published: "</string>
+    <string name="language_label">"Language: "</string>
+    <string name="page_count_hint">Enter page count</string>
+    <string name="published_edit_hint">Enter publishing year</string>
+    <string name="context_menu_title">Book actions</string>
+    <string name="delete_menu_action">Delete</string>
 </resources>

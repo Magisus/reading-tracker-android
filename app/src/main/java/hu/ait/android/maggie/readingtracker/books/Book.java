@@ -41,6 +41,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     private String apiId;
     private String publicationYear;
     private Date dateFinished;
+    private String description;
 
     public Book() {
         //default constructor for SugarORM
@@ -108,12 +109,19 @@ public class Book extends SugarRecord<Book> implements Serializable {
         this.publicationYear = publicationYear;
     }
 
-
     public Date getDateFinished() {
         return dateFinished;
     }
 
     public void setDateFinished(Date dateFinished) {
         this.dateFinished = dateFinished;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

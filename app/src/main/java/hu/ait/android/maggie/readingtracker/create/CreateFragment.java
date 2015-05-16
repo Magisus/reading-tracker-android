@@ -27,6 +27,10 @@ public class CreateFragment extends Fragment {
     EditText titleEdit;
     @InjectView(R.id.authorEdit)
     EditText authorEdit;
+    @InjectView(R.id.pagesEdit)
+    EditText pageCountEdit;
+    @InjectView(R.id.publishedDateEdit)
+    EditText publishedDateEdit;
     @InjectView(R.id.statusSpinner)
     Spinner statusSpinner;
 
@@ -49,6 +53,8 @@ public class CreateFragment extends Fragment {
         Book book = new Book(titleEdit.getText().toString(), authorEdit.getText().toString(), null);
         book.setStatus(Book.Status.fromInt(statusSpinner.getSelectedItemPosition()));
         book.setApiId("manual");
+        book.setPublicationYear(publishedDateEdit.getText().toString());
+        book.setPageCount(Integer.parseInt(pageCountEdit.getText().toString()));
 
         getActivity().setResult(CreateBookActivity.RESULT_OK, new Intent().putExtra
                 (CreateBookActivity.KEY_NEW_BOOK, book));

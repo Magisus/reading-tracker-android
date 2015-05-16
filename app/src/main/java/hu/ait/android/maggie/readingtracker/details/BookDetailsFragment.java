@@ -2,6 +2,7 @@ package hu.ait.android.maggie.readingtracker.details;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import org.w3c.dom.Text;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -38,6 +41,9 @@ public class BookDetailsFragment extends Fragment {
     @InjectView(R.id.publicationText)
     TextView publicationText;
 
+    @InjectView(R.id.descriptionText)
+    TextView descriptionText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
@@ -59,7 +65,8 @@ public class BookDetailsFragment extends Fragment {
                     ().into(coverImage);
         }
 
-        pagesText.setText("Pages: " + book.getPageCount());
-        publicationText.setText("Published: " + book.getPublicationYear());
+        pagesText.setText(getResources().getString(R.string.pages_label) + book.getPageCount());
+        publicationText.setText(getResources().getString(R.string.published_label) + book.getPublicationYear());
+        descriptionText.setText(Html.fromHtml(book.getDescription()));
     }
 }

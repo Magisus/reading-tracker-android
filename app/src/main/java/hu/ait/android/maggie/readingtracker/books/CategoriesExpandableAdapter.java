@@ -94,6 +94,10 @@ public class CategoriesExpandableAdapter extends BaseExpandableListAdapter {
         getGroup(book.getStatus().getIndex()).add(book);
     }
 
+    public void removeChild(int groupPos, int childPos) {
+        groups.get(headers[groupPos]).remove(childPos);
+    }
+
     private class ViewHolder {
         TextView titleText;
         TextView authorText;
