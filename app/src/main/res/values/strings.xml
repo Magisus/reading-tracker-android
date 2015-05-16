@@ -32,4 +32,7 @@
     <string name="choose_date">Choose date </string>
     <string name="action_show_stats">Stats</string>
     <string name="title_activity_reading_statistics">Statistics</string>
+    <string name="reading_history_tab">Reading History</string>
+    <string name="reading_rate_tab">Reading Rate</string>
+    <string name="book_stats_tab">Book stats</string>
 </resources>
