@@ -2,6 +2,7 @@ package hu.ait.android.maggie.readingtracker.details;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,6 @@ public class BookDetailsFragment extends Fragment {
 
         pagesText.setText(getResources().getString(R.string.pages_label) + book.getPageCount());
         publicationText.setText(getResources().getString(R.string.published_label) + book.getPublicationYear());
-        descriptionText.setText(book.getDescription());
+        descriptionText.setText(Html.fromHtml(book.getDescription()));
     }
 }
