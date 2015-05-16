@@ -17,7 +17,7 @@
             android:value="books.db" />
         <meta-data
             android:name="VERSION"
-            android:value="7" />
+            android:value="8" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -42,6 +42,10 @@
         <activity
             android:name=".details.BookDetailsActivity"
             android:label="@string/title_activity_book_details" >
+        </activity>
+        <activity
+            android:name=".statistics.ReadingStatisticsActivity"
+            android:label="@string/title_activity_reading_statistics" >
         </activity>
     </application>
 

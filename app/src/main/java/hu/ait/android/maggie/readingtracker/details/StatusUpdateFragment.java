@@ -25,6 +25,7 @@ public class StatusUpdateFragment extends Fragment {
     public static final String STATUS = "STATUS";
 
     public static final String DATE_FINISHED = "DATE_FINISHED";
+    public static final String DATE_STARTED = "DATE_STARTED";
 
     @InjectView(R.id.currentStatusText)
     TextView currentStatusText;
@@ -49,6 +50,9 @@ public class StatusUpdateFragment extends Fragment {
         if(currentStatus.equals(Book.Status.FINISHED)){
             String dateFinished = getArguments().getString(DATE_FINISHED);
             dateFinishedText.setText("Finished: " + dateFinished);
+        } else if (currentStatus.equals(Book.Status.IN_PROGRESS)){
+            String dateStarted = getArguments().getString(DATE_STARTED);
+            dateFinishedText.setText("Started: " + dateStarted);
         }
     }
 

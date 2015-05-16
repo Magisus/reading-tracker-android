@@ -9,14 +9,17 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
-import java.util.Date;
+
+import hu.ait.android.maggie.readingtracker.R;
 
 /**
  * Created by Magisus on 5/14/2015.
  */
-public class FinishedDateDialog extends DialogFragment implements DatePickerDialog
+public class ReadingDatesDialog extends DialogFragment implements DatePickerDialog
         .OnDateSetListener {
 
+
+    public static final String START_OR_FINISHED = "START_OR_FINISHED";
 
     public interface DateSelectedInterface {
         public void onDateSelected(int year, int month, int day);
@@ -41,8 +44,11 @@ public class FinishedDateDialog extends DialogFragment implements DatePickerDial
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar calendar = Calendar.getInstance();
-        return new DatePickerDialog(getActivity(), this, calendar.get
+        DatePickerDialog datePicker = new DatePickerDialog(getActivity(), this, calendar.get
                 (Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePicker.setTitle(getResources().getString(R.string.choose_date) + getArguments()
+                .getString(START_OR_FINISHED) + ": ");
+        return datePicker;
     }
 
     @Override

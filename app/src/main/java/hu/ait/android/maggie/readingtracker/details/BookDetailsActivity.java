@@ -4,15 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
-import java.text.DateFormatSymbols;
 import java.util.Calendar;
-import java.util.Date;
 
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 
 public class BookDetailsActivity extends ActionBarActivity implements SetStatusDialog
-        .StatusSelectedInterface, FinishedDateDialog.DateSelectedInterface {
+        .StatusSelectedInterface, ReadingDatesDialog.DateSelectedInterface {
 
     public static final String BOOK_TO_DISPLAY = "BOOK_TO_DISPLAY";
     public static final String BOOK_ID = "BOOK_ID";
@@ -52,7 +50,9 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
             Bundle args = new Bundle();
             args.putInt(StatusUpdateFragment.STATUS, bookToDisplay.getStatus
                     ().getIndex());
-            args.putString(StatusUpdateFragment.DATE_FINISHED, bookToDisplay.getDateFinished());
+            args.putString(StatusUpdateFragment.DATE_FINISHED, bookToDisplay
+                    .getDateFinishedString());
+            args.putString(StatusUpdateFragment.DATE_STARTED, bookToDisplay.getDateStartedString());
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.actionButtonsContainer, fragment,
                     StatusUpdateFragment.TAG);
@@ -79,7 +79,7 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
     }
 
     public void saveBook() {
-        if(bookId != -1){
+        if (bookId != -1) {
             bookToDisplay.setId(bookId);
         }
         bookToDisplay.save();
@@ -88,9 +88,14 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
     @Override
     public void onStatusSelected(Book.Status status) {
         bookToDisplay.setStatus(status);
-        if (status.equals(Book.Status.FINISHED)) {
-            FinishedDateDialog finishedDateDialog = new FinishedDateDialog();
-            finishedDateDialog.show(getSupportFragmentManager(), FinishedDateDialog
+        if (status.equals(Book.Status.FINISHED) || status.equals(Book.Status.IN_PROGRESS)) {
+            ReadingDatesDialog finishedDateDialog = new ReadingDatesDialog();
+            Bundle args = new Bundle();
+            //For title of dialog, are we choosing the start date or the finished date?
+            args.putString(ReadingDatesDialog.START_OR_FINISHED, status.equals(Book.Status
+                    .FINISHED) ? "finished" : "started");
+            finishedDateDialog.setArguments(args);
+            finishedDateDialog.show(getSupportFragmentManager(), ReadingDatesDialog
                     .TAG);
         } else {
             saveBook();
@@ -104,7 +109,18 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
 
     @Override
     public void onDateSelected(int year, int month, int day) {
-        bookToDisplay.setDateFinished(day + " " + new DateFormatSymbols().getMonths()[month - 1] + ", " + year);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        if (bookToDisplay.getStatus().equals(Book.Status.IN_PROGRESS)) {
+            if (bookToDisplay.getDateFinished() > 0 && bookToDisplay.getDateFinished() < calendar
+                    .getTimeInMillis()) {
+                //User is rereading a book, we only want to save the most recent finish date
+                bookToDisplay.setDateFinished(-1L);
+            }
+            bookToDisplay.setDateStarted(calendar.getTimeInMillis());
+        } else if (bookToDisplay.getStatus().equals(Book.Status.FINISHED)) {
+            bookToDisplay.setDateFinished(calendar.getTimeInMillis());
+        }
         saveBook();
         updateUI();
     }

@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import hu.ait.android.maggie.readingtracker.R;
 import hu.ait.android.maggie.readingtracker.books.Book;
 import hu.ait.android.maggie.readingtracker.create.CreateBookActivity;
+import hu.ait.android.maggie.readingtracker.statistics.ReadingStatisticsActivity;
 
 
 public class MainActivity extends ActionBarActivity implements SearchBarFragment
@@ -110,6 +111,8 @@ public class MainActivity extends ActionBarActivity implements SearchBarFragment
         if (id == R.id.action_add_book) {
             startActivityForResult(new Intent(this, CreateBookActivity.class), CREATE_BOOK);
             return true;
+        } else if (id == R.id.action_show_statistics){
+            startActivity(new Intent(this, ReadingStatisticsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

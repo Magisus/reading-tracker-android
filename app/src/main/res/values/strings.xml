@@ -29,4 +29,7 @@
     <string name="published_edit_hint">Enter publishing year</string>
     <string name="context_menu_title">Book actions</string>
     <string name="delete_menu_action">Delete</string>
+    <string name="choose_date">Choose date </string>
+    <string name="action_show_stats">Stats</string>
+    <string name="title_activity_reading_statistics">Statistics</string>
 </resources>
