@@ -114,6 +114,9 @@ public class Book extends SugarRecord<Book> implements Serializable {
     }
 
     public String getDateFinishedString() {
+        if(dateFinished <= 0){
+            return "N/A";
+        }
         return new SimpleDateFormat("d MMMMM, yyyy").format(new Date(dateFinished));
     }
 
@@ -134,6 +137,9 @@ public class Book extends SugarRecord<Book> implements Serializable {
     }
 
     public String getDateStartedString() {
+        if(dateStarted <= 0){
+            return "N/A";
+        }
         return new SimpleDateFormat("d MMMMM, yyyy").format(new Date(dateStarted));
     }
 
