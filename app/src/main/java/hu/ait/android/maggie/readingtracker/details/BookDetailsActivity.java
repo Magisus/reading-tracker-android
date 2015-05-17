@@ -88,12 +88,12 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
     @Override
     public void onStatusSelected(Book.Status status) {
         bookToDisplay.setStatus(status);
-        if (status.equals(Book.Status.FINISHED) || status.equals(Book.Status.IN_PROGRESS)) {
+        if (Book.Status.FINISHED.equals(status) || Book.Status.IN_PROGRESS.equals(status)) {
             ReadingDatesDialog finishedDateDialog = new ReadingDatesDialog();
             Bundle args = new Bundle();
             //For title of dialog, are we choosing the start date or the finished date?
-            args.putString(ReadingDatesDialog.START_OR_FINISHED, status.equals(Book.Status
-                    .FINISHED) ? "finished" : "started");
+            args.putString(ReadingDatesDialog.START_OR_FINISHED, Book.Status
+                    .FINISHED.equals(status) ? "finished" : "started");
             finishedDateDialog.setArguments(args);
             finishedDateDialog.show(getSupportFragmentManager(), ReadingDatesDialog
                     .TAG);
@@ -111,14 +111,14 @@ public class BookDetailsActivity extends ActionBarActivity implements SetStatusD
     public void onDateSelected(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
-        if (bookToDisplay.getStatus().equals(Book.Status.IN_PROGRESS)) {
+        if (Book.Status.IN_PROGRESS.equals(bookToDisplay.getStatus())) {
             if (bookToDisplay.getDateFinished() > 0 && bookToDisplay.getDateFinished() < calendar
                     .getTimeInMillis()) {
                 //User is rereading a book, we only want to save the most recent finish date
                 bookToDisplay.setDateFinished(-1L);
             }
             bookToDisplay.setDateStarted(calendar.getTimeInMillis());
-        } else if (bookToDisplay.getStatus().equals(Book.Status.FINISHED)) {
+        } else if (Book.Status.FINISHED.equals(bookToDisplay.getStatus())) {
             bookToDisplay.setDateFinished(calendar.getTimeInMillis());
         }
         saveBook();

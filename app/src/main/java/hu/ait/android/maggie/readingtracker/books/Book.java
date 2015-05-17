@@ -3,9 +3,7 @@ package hu.ait.android.maggie.readingtracker.books;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -114,13 +112,13 @@ public class Book extends SugarRecord<Book> implements Serializable {
     }
 
     public String getDateFinishedString() {
-        if(dateFinished <= 0){
+        if (dateFinished <= 0) {
             return "N/A";
         }
         return new SimpleDateFormat("d MMMMM, yyyy").format(new Date(dateFinished));
     }
 
-    public long getDateFinished(){
+    public long getDateFinished() {
         return dateFinished;
     }
 
@@ -137,7 +135,7 @@ public class Book extends SugarRecord<Book> implements Serializable {
     }
 
     public String getDateStartedString() {
-        if(dateStarted <= 0){
+        if (dateStarted <= 0) {
             return "N/A";
         }
         return new SimpleDateFormat("d MMMMM, yyyy").format(new Date(dateStarted));

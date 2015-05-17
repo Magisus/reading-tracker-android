@@ -28,7 +28,8 @@ public class ReadingHistoryFragment extends ListFragment {
         Collections.sort(sortedBooks, new Comparator<Book>() {
             @Override
             public int compare(Book lhs, Book rhs) {
-                return Long.compare(lhs.getDateFinished(), rhs.getDateFinished());
+                return lhs.getDateFinished() > rhs.getDateFinished() ? -1 : lhs.getDateFinished()
+                        < rhs.getDateFinished() ? 1 : 0;
             }
         });
         setListAdapter(new BookAdapter(getActivity(), sortedBooks));

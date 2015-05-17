@@ -70,8 +70,8 @@ public class SearchBarFragment extends Fragment {
         imm.hideSoftInputFromWindow(searchEdit.getWindowToken(), 0);
     }
 
-
     public void onEventMainThread(BookSearchResult result) {
+        //Create list of books from volume information
         ArrayList<Book> booksSearched = new ArrayList<>();
         for (Item item : result.getItems()) {
             String title = item.getVolumeInfo().getTitle();
