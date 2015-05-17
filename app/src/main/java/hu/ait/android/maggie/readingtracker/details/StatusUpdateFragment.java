@@ -1,6 +1,7 @@
 package hu.ait.android.maggie.readingtracker.details;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -44,15 +45,16 @@ public class StatusUpdateFragment extends Fragment {
     }
 
     private void setStatusText() {
+        Resources res = getResources();
         Book.Status currentStatus = Book.Status.fromInt(getArguments().getInt(STATUS));
-        String[] statuses = getResources().getStringArray(R.array.reading_status_array);
-        currentStatusText.setText("Current status: " + statuses[currentStatus.getIndex()]);
+        String[] statuses = res.getStringArray(R.array.reading_status_array);
+        currentStatusText.setText(res.getString(R.string.current_status_lable) + statuses[currentStatus.getIndex()]);
         if(currentStatus.equals(Book.Status.FINISHED)){
             String dateFinished = getArguments().getString(DATE_FINISHED);
-            dateFinishedText.setText("Finished: " + dateFinished);
+            dateFinishedText.setText(res.getString(R.string.date_finished_label) + dateFinished);
         } else if (currentStatus.equals(Book.Status.IN_PROGRESS)){
             String dateStarted = getArguments().getString(DATE_STARTED);
-            dateFinishedText.setText("Started: " + dateStarted);
+            dateFinishedText.setText(res.getString(R.string.date_started_label) + dateStarted);
         }
     }
 

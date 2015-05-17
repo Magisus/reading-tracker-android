@@ -2,11 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:padding="7dp"
+    >
 
     <TextView
-        android:text="Book stats stub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/booksFinishedText"
+        style="@style/BookDetailsText"/>
+
+    <TextView
+        android:id="@+id/averageLengthText"
+        style="@style/BookDetailsText"/>
 
 </LinearLayout>

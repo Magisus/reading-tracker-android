@@ -35,4 +35,10 @@
     <string name="reading_history_tab">Reading History</string>
     <string name="reading_rate_tab">Reading Rate</string>
     <string name="book_stats_tab">Book stats</string>
+    <string name="date_finished_label">"Finished: "</string>
+    <string name="current_status_lable">"Current status: "</string>
+    <string name="date_started_label">"Started: "</string>
+    <string name="books_finished_label">"Books finished: "</string>
+    <string name="average_length_label">"Average length: "</string>
+    <string name="pages">pages</string>
 </resources>
